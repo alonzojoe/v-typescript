@@ -13,14 +13,15 @@ const props = defineProps<{
   person: Person
 }>()
 
-const emit = defineEmits(['changeName'])
+const emit = defineEmits()
 
 const newName = ref('')
-const changeName = () => {
+
+const changeMe = () => {
    const userInput = prompt("Enter New Name: ")
    if (userInput !== null) {
       newName.value = userInput ?? ''
-      emit('changeName', newName.value)
+      emit('change-name', newName.value)
    }
 
 }
@@ -35,7 +36,7 @@ const changeName = () => {
       <p>Name: {{ person.name }}</p>
       <p>Age: {{ person.age }}</p>
       <p>Address: {{ person.address }}</p>
-      <button @click="changeName">Change Name</button>
+      <button @click="changeMe">Change Name</button>
   </div>
 </template>
 
