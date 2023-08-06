@@ -39,12 +39,13 @@ const changeMe = () => {
 </script>
 
 <template>
-  <h1>Personal Information</h1>
+  <h2>Persons List</h2>
 
   <div class="card">
-      <p>Name: {{ person.name }}</p>
-      <p>Age: {{ person.age }}</p>
-      <p>Address: {{ person.address }}</p>
+      <span><i class='bx bx-game' ></i></span>
+      <span>Name: {{ person.name }}</span>
+      <span>Age: {{ person.age }}</span>
+      <span>Address: {{ person.address }}</span>
       <button @click="changeMe">Change Name</button>
   </div>
 </template>
@@ -52,5 +53,15 @@ const changeMe = () => {
 <style scoped>
 .read-the-docs {
   color: #888;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #616460;
+  border-radius: .4rem;
+  padding: 10px 15px;
+  width: 100%;
 }
 </style>

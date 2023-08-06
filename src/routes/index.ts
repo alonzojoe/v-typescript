@@ -1,8 +1,18 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory } from 'vue-router'
+import DefaultView from '../components/DefaultView.vue'
+
 
 const routes = [
     {
-
+        path: '/',
+        component: DefaultView,
+        children: [
+            {
+                path: '/',
+                name: 'persons',
+                component: () => import('../views/PersonsPage.vue')
+            }
+        ]
     }
 ]
 
