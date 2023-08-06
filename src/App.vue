@@ -9,9 +9,10 @@ const person: Person = reactive({
   address: "123 Main Street America"
 })
 
-const handleChangeName = (newName: any) => {
-  console.log(newName)
-  person.name = newName
+const handleChangeName = ({ name, age , address }: Person) => {
+  person.name = name
+  person.age = age
+  person.address = address
 }
 
 
@@ -21,7 +22,7 @@ const handleChangeName = (newName: any) => {
   <div>
     <h1>Main Parent</h1>
     <h3>Child Components</h3>
-    <Component :person="person" @change-name="handleChangeName" />
+    <Component :person="person" @change-name="handleChangeName($event)" />
   </div>
 
 </template>

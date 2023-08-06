@@ -15,13 +15,22 @@ const props = defineProps<{
 
 const emit = defineEmits()
 
-const newName = ref('')
+const modifiedObject = ref<Person>({
+    name: "",
+    age: 0,
+    address: ""
+})
 
 const changeMe = () => {
-   const userInput = prompt("Enter New Name: ")
-   if (userInput !== null) {
-      newName.value = userInput ?? ''
-      emit('change-name', newName.value)
+   const name = prompt("Enter New Name: ")
+   const age = prompt("Enter New Age: ")
+   const address = prompt("Enter New Address: ")
+   if (name !== null && age !== null && address !== null) {
+      modifiedObject.value.name = name ?? ''
+      modifiedObject.value.age = parseInt(age) ?? ''
+      modifiedObject.value.address = address ?? ''
+      console.log(modifiedObject.value)
+      emit('change-name', modifiedObject.value)
    }
 
 }
