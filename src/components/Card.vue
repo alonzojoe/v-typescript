@@ -40,7 +40,7 @@ const changeMe = () => {
 
 <template>
   <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="https://worldrefiningassociation.com/wp-content/uploads/placeholder-speaker-l-8.jpg" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Name: {{ person.name }}</h5>
       <p class="card-text">Age: {{ person.age }}, Address: {{ person.address }}</p>

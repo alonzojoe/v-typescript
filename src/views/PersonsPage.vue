@@ -20,16 +20,16 @@ const handleChangeName = ({ name, age , address }: Person) => {
 
 <template>
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
       <Card :person="person" @change-name="handleChangeName($event)" />
     </div>
-    <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
       <Card :person="person" @change-name="handleChangeName($event)" />
     </div>
-    <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
       <Card :person="person" @change-name="handleChangeName($event)" />
     </div>
-    <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
       <Card :person="person" @change-name="handleChangeName($event)" />
     </div>
   </div>
