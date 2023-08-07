@@ -21,7 +21,7 @@ const handleChangeName = (newName: any) => {
   <div>
     <h1>Main Parent</h1>
     <h3>Child Components</h3>
-    <Component :person="person" @change-name="handleChangeName" />
+    <Component :person="person" @change-name="handleChangeName($event)" />
   </div>
 
 </template>
