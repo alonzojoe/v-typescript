@@ -39,29 +39,12 @@ const changeMe = () => {
 </script>
 
 <template>
-  <h2>Persons List</h2>
-
-  <div class="card">
-      <span><i class='bx bx-game' ></i></span>
-      <span>Name: {{ person.name }}</span>
-      <span>Age: {{ person.age }}</span>
-      <span>Address: {{ person.address }}</span>
-      <button @click="changeMe">Change Name</button>
-  </div>
+  <div class="card" style="width: 18rem;">
+    <img src="https://worldrefiningassociation.com/wp-content/uploads/placeholder-speaker-l-8.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{ person.name }}</h5>
+      <p class="card-text">Age: {{ person.age }}, Address: {{ person.address }}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> 
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-
-.card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #616460;
-  border-radius: .4rem;
-  padding: 10px 15px;
-  width: 100%;
-}
-</style>
