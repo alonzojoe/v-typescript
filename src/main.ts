@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 import App from './App.vue'
 import router from './routes/index'
+import store from './store/index'
 
 const app = createApp(App)
 app.use(router)
+app.use(store)
 app.mount('#app')
