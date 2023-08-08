@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h1>Main Persons Page</h1>
+        <NavBar />
         <router-view/>
     </div>
 </template>
 
 <script lang="ts" setup>
-
+import NavBar from '../components/NavBar.vue'
 </script>
