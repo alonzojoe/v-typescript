@@ -9,7 +9,6 @@
 <script lang="ts" setup>
     import { ref, computed, onMounted, onBeforeMount } from 'vue';
     import { useRoute } from 'vue-router';
-import store from '../store';
 
     const route = useRoute()
     console.log(route.params.id)
