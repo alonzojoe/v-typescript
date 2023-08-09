@@ -1,6 +1,6 @@
 import { Person } from './../types/Types';
 import { createStore } from "vuex";
-import { RootState, SetPersonsPayload, Person } from "../types/Types";
+import { RootState, Person, SetPersonsPayload } from "../types/Types";
 import api from "../api/index"
 
 const store = createStore<RootState>({
@@ -17,8 +17,8 @@ const store = createStore<RootState>({
     actions: {
         async fetchPersons({ commit }) {
             const response = await api.get<Person[]>('user?limit=10')
-            const data = response.data
-            commit('setPersons', data.data)
+            const data = response.data.data
+            commit('setPersons', data)
         }
     },
     getters: {

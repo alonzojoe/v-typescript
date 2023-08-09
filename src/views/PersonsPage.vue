@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Card from '../components/Card.vue'
 import { onMounted, reactive, computed } from 'vue';
-import { Person } from '../types/Types.ts'
 import store from '../store';
 
 const persons = computed(()=> store.getters.getPersons)
@@ -13,10 +12,11 @@ onMounted(() => {
 
 <template>
   <div class="row justify-content-center">
-    <div v-for="p in persons" :key="p.id" class="col-sm-12 col-md-6 col-lg-4 mb-3">
+    <div v-for="p in persons" :key="p.id" class="col-sm-12 col-md-6 col-lg-3 mb-3">
       <Card :person="p" />
     </div>
-    <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
+
+    <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
       <div class="card" aria-hidden="true">
         <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
         <div class="card-body">
