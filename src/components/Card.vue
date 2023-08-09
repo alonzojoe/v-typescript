@@ -32,12 +32,31 @@ const changeMe = () => {
 </script>
 
 <template>
-  <div class="card" style="width: 18rem;">
-    <img src="https://worldrefiningassociation.com/wp-content/uploads/placeholder-speaker-l-8.jpg" class="card-img-top" alt="...">
+  <div class="card" style="width: 20rem;">
     <div class="card-body">
-      <h6 class="card-title">{{person.id}}. {{ person.name }}</h6>
-      <p class="card-text">{{ person }}</p>
-      <a href="#" class="btn btn-primary">View Profile</a>
+      <div class="d-flex justify-content-start align-items-center mb-2">
+        <img :src="person.picture" class="cursor-pointer rounded-circle cst-img border border-primary" alt="...">
+        <div>
+          <p class="mx-2 fs-6 text-secondary p-0 m-0">{{person.id}}</p>
+          <router-link :to="{name: 'profile', params: { id: person.id } }" class="mx-2 fs-6 text-decoration-none">{{ person.title }}. {{ person.firstName }} {{ person.lastName }}</router-link>
+        </div>
+        
+      </div>
+      
+      
+      <!-- <p class="card-text">{{ person }}</p> -->
+      <div class="d-flex justify-content-end">
+        <a href="#" class="btn btn-sm btn-primary">View Posts</a>
+      </div>
     </div>
   </div> 
 </template>
+
+<style scoped>
+
+.cst-img{
+  height: 3rem;
+  width: auto;
+}
+
+</style>
