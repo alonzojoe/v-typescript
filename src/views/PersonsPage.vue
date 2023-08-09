@@ -6,39 +6,17 @@ import store from '../store';
 
 const persons = computed(()=> store.getters.getPersons)
 
-const person: Person = reactive({
-  name: "John Doe",
-  age: 23,
-  address: "123 Main Street America"
-})
-
-const handleChangeName = ({ name, age , address }: Person) => {
-  person.name = name
-  person.age = age
-  person.address = address
-}
-
 onMounted(() => {
   store.dispatch('fetchPersons')
 })
 </script>
 
 <template>
-  {{ persons }}
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
-      <Card :person="person" @change-name="handleChangeName($event)" />
+    <div v-for="p in persons" :key="p.id" class="col-sm-12 col-md-6 col-lg-4 mb-3">
+      <Card :person="p" />
     </div>
-    <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
-      <Card :person="person" @change-name="handleChangeName($event)" />
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
-      <Card :person="person" @change-name="handleChangeName($event)" />
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
-      <Card :person="person" @change-name="handleChangeName($event)" />
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+    <div class="col-sm-12 col-md-3 col-lg-3 mb-3">
       <div class="card" aria-hidden="true">
         <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
         <div class="card-body">
