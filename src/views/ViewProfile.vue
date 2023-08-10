@@ -1,7 +1,10 @@
 <template>
     <div class="container-fluid">
-        <div class="dflex justify-content-center">
-            {{ profile }}
+        <div class="d-flex justify-content-center">
+            <pre>
+                {{ profile }}
+            </pre>
+            
         </div>
     </div>
 </template>

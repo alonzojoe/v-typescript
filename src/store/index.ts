@@ -9,7 +9,8 @@ const store = createStore<RootState>({
         data: {
             persons: [],
             personProfile: {},
-            personPosts: []
+            personPosts: [],
+            posts: []
         }
     },
     mutations: {
@@ -26,6 +27,15 @@ const store = createStore<RootState>({
         },
 
         setPersonPosts: (state: any, payload: any) => {
+            state.data.personPosts = payload.data.map((p) => {
+                return {
+                    ...p,
+                    publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a')
+                }
+            })
+        },
+
+        setPosts: (state: any, payload: any) => {
             state.data.personPosts = payload.data.map((p) => {
                 return {
                     ...p,
@@ -51,12 +61,19 @@ const store = createStore<RootState>({
             const response = await api.get(`user/${id}/post?limit=10`)
             const data = response.data
             commit('setPersonPosts', data)
+        },
+
+        async fetchPosts({commit}) {
+            const response = await api.get(`/post?limit=100`)
+            const data = response.data
+            commit('setPosts', data)
         }
     },
     getters: {
         getPersons: (state: RootState) => state.data.persons,
         getPersonProfile: (state: any) => state.data.personProfile,
-        getPersonPosts: (state: any) => state.data.personPosts
+        getPersonPosts: (state: any) => state.data.personPosts,
+        getPosts: (state: any) => state.data.posts
     }
 })
 

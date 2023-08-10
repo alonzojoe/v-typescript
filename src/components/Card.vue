@@ -46,7 +46,7 @@ const changeMe = () => {
       
       <!-- <p class="card-text">{{ person }}</p> -->
       <div class="d-flex justify-content-end">
-        <router-link :to="{name: 'posts', params: { id: person.id }}" class="btn btn-sm btn-primary">View Posts</router-link>
+        <router-link :to="{name: 'person-posts', params: { id: person.id }}" class="btn btn-sm btn-primary">View Posts</router-link>
       </div>
     </div>
   </div> 
