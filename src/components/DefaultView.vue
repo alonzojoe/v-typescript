@@ -3,7 +3,7 @@
 
 
         <NavBar class="bx-shadow"/>
-        <div class="container mx-auto">
+        <div class="container mx-auto d-flex justify-content-center">
             <router-view class="mt-4"/>
         </div>
 

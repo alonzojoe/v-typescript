@@ -2,43 +2,61 @@ import { Person } from './../types/Types';
 import { createStore } from "vuex";
 import { RootState, Person, SetPersonsPayload } from "../types/Types";
 import api from "../api/index"
+import moment from 'moment';
 
 const store = createStore<RootState>({
     state: {
         data: {
             persons: [],
-            personProfile: {}
+            personProfile: {},
+            personPosts: []
         }
     },
     mutations: {
         setPersons: (state: RootState, payload: SetPersonsPayload) => {
-            state.data.persons = payload
+            state.data.persons = payload.data
         },
 
         setPersonprofile: (state: any, payload: object) => {
-            state.data.personProfile = payload
+            state.data.personProfile = payload.data
         },
 
         clearProfile: (state: any) => {
             state.data.personProfile = {}
+        },
+
+        setPersonPosts: (state: any, payload: any) => {
+            state.data.personPosts = payload.data.map((p) => {
+                return {
+                    ...p,
+                    publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a')
+                }
+            })
         }
     },
     actions: {
         async fetchPersons({ commit }) {
             const response = await api.get<Person[]>('user?limit=20')
-            const data = response.data.data
+            const data = response.data
             commit('setPersons', data)
         },
 
         async viewProfile({commit}, id: string) {
             const response = await api.get<Person>(`user/${id}`)
-            const data = response.data
+            const data = response
             commit('setPersonprofile', data)
+        },
+
+        async fetchPersonPosts({commit}, id: string) {
+            const response = await api.get(`user/${id}/post?limit=10`)
+            const data = response.data
+            commit('setPersonPosts', data)
         }
     },
     getters: {
         getPersons: (state: RootState) => state.data.persons,
-        getPersonProfile: (state: any) => state.data.personProfile
+        getPersonProfile: (state: any) => state.data.personProfile,
+        getPersonPosts: (state: any) => state.data.personPosts
     }
 })
 
