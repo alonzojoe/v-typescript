@@ -64,7 +64,7 @@ const store = createStore<RootState>({
         },
 
         async fetchPosts({commit}) {
-            const response = await api.get(`/post?limit=100`)
+            const response = await api.get(`post?limit=100`)
             const data = response.data
             commit('setPosts', data)
         }
