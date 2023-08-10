@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import Card from '../components/Card.vue'
 import { onMounted, reactive, computed } from 'vue';
-import store from '../store';
+import { useStore } from 'vuex';
+
+const store = useStore()
 
 const persons = computed(()=> store.getters.getPersons)
 

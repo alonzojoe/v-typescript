@@ -21,8 +21,18 @@ const routes = [
                 path: '/profile/:id',
                 name: 'profile',
                 component: () => import ('../views/ViewProfile.vue')
+            },
+            {
+                path: '/posts/:id',
+                name: 'posts',
+                component: () => import('../views/PersonPosts.vue')
             }
         ]
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'not-found',
+        component: () => import('../views/NotFound.vue')
     }
 ]
 
