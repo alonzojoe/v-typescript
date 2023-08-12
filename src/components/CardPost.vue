@@ -56,10 +56,9 @@ const emit = defineEmits()
                     </div>
                   </div>
                   <div class="col-12 p-0 m-0">
-                    <p class="mx-2 fs-6 text-secondary p-0 m-0">Nice Dog</p>
+                    <p class="mx-2 fs-6 text-secondary p-0 m-0">lorem</p>
                   </div>
                 </div>
-                 
               </div>
             </div>
           </div>

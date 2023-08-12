@@ -10,7 +10,8 @@ const store = createStore<RootState>({
             persons: [],
             personProfile: {},
             personPosts: [],
-            posts: []
+            posts: [],
+            postComments: [],
         }
     },
     mutations: {
@@ -33,6 +34,10 @@ const store = createStore<RootState>({
                     publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a')
                 }
             })
+        },
+
+        setPostComments: (state: any, payload: any) => {
+            state.data.postComments = payload
         },
 
         setPosts: (state: any, payload: any) => {
@@ -67,13 +72,20 @@ const store = createStore<RootState>({
             const response = await api.get(`post?limit=100`)
             const data = response.data
             commit('setPosts', data)
+        },
+
+        async fetchPostComments({commit}, id: string) {
+            const response = await api.get(`post/${id}/comment?limit=100`)
+            const data = response.data
+            commit('setPosts', data)
         }
     },
     getters: {
         getPersons: (state: RootState) => state.data.persons,
         getPersonProfile: (state: any) => state.data.personProfile,
         getPersonPosts: (state: any) => state.data.personPosts,
-        getPosts: (state: any) => state.data.posts
+        getPosts: (state: any) => state.data.posts,
+        getters: (state: any) => state.data.postComments
     }
 })
 
