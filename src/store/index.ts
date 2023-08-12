@@ -12,6 +12,7 @@ const store = createStore<RootState>({
             personPosts: [],
             posts: [],
             postComments: [],
+            postsByTags: [],
         }
     },
     mutations: {
@@ -36,6 +37,10 @@ const store = createStore<RootState>({
             })
         },
 
+        setPostEmpty: (state: any) => {
+            state.data.posts = []
+        },
+
         setPostComments: (state: any, payload: any) => {
             state.data.postComments = payload
         },
@@ -47,6 +52,19 @@ const store = createStore<RootState>({
                     publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a')
                 }
             })
+        },
+
+        setPostsBytags: (state: any, payload: any) => {
+            state.data.postsByTags = payload.data.map((p) => {
+                return {
+                    ...p,
+                    publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a')
+                }
+            })
+        },
+
+        setPostsByTagEmpty: (state: any) => {
+            state.data.postsByTags = []
         }
     },
     actions: {
@@ -78,6 +96,12 @@ const store = createStore<RootState>({
             const response = await api.get(`post/${id}/comment?limit=100`)
             const data = response.data
             commit('setPosts', data)
+        },
+
+        async fetchPostByTag({commit}, tag: string) {
+            const response = await api.get(`tag/${tag}/post?limit=100`)
+            const data = response.data
+            commit('setPostsBytags', data)
         }
     },
     getters: {
@@ -85,7 +109,8 @@ const store = createStore<RootState>({
         getPersonProfile: (state: any) => state.data.personProfile,
         getPersonPosts: (state: any) => state.data.personPosts,
         getPosts: (state: any) => state.data.posts,
-        getters: (state: any) => state.data.postComments
+        getPostComments: (state: any) => state.data.postComments,
+        getPostByTag: (state: any) => state.data.postsByTags,
     }
 })
 

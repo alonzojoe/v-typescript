@@ -31,6 +31,11 @@ const routes = [
                 path: '/posts',
                 name: 'posts',
                 component: () => import('../views/Posts.vue')
+            },
+            {
+                path: '/bytag/:tag',
+                name: 'bytag',
+                component: () => import('../views/ByTags.vue')
             }
         ]
     },
