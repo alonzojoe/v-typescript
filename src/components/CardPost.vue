@@ -1,22 +1,37 @@
-<script setup lang="ts">
+<script lang="ts">
 import { ref } from 'vue'
 import Comments from './Comments.vue'
 import { useRouter } from 'vue-router';
 import { useRoute } from 'vue-router';
 
-const props = defineProps<{
-    post: object
-}>()
 
-const router = useRouter()
-const route = useRoute()
+export default {
+  props: [
+    'post'
+  ],
+  
+  components: {
+    Comments,
+  },
 
-const emit = defineEmits()
+  setup(props) {
+    const router = useRouter()
+    const route = useRoute()
 
-const showComment = ref(false)
+    const viewPostOnTag = (tag: string) => {
+      router.push(`/bytag/${tag}`)
+    }
 
-const viewPostOnTag = (tag: string) => {
-    router.push(`/bytag/${tag}`)
+    const showComments = ref(false)
+
+    return {
+      viewPostOnTag,
+      route,
+      showComments
+    }
+
+  }
+
 }
 
 </script>
@@ -27,31 +42,35 @@ const viewPostOnTag = (tag: string) => {
       <div class="d-flex justify-content-start align-items-center mb-2">
         <img :src="post.owner.picture" class="cursor-pointer rounded-circle cst-img border border-primary" alt="...">
         <div>
-            <router-link :to="{name: 'profile', params: { id: post.owner.id } }" class="mx-2 fs-6 text-decoration-none">{{ post.owner.title }}. {{ post.owner.firstName }} {{ post.owner.lastName }}</router-link>
-            <p class="mx-2 fs-6 text-secondary p-0 m-0">{{post.publishDate}}</p>
+          <router-link :to="{ name: 'profile', params: { id: post.owner.id } }" class="mx-2 fs-6 text-decoration-none">{{
+            post.owner.title }}. {{ post.owner.firstName }} {{ post.owner.lastName }}</router-link>
+          <p class="mx-2 fs-6 text-secondary p-0 m-0">{{ post.publishDate }}</p>
         </div>
       </div>
       <div class="row p-0 m-0">
         <div class="col-12">
-            <p class="mb-1">{{post.text}} {{route.params.tag}}</p>
-            <img :src="post.image" class="img-fluid shadow p-0 bg-body-tertiary rounded" alt="...">
+          <p class="mb-1">{{ post.text }} {{ route.params.tag }}</p>
+          <img :src="post.image" class="img-fluid shadow p-0 bg-body-tertiary rounded" alt="...">
         </div>
         <div class="col-12 mt-2">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <span v-for="t in post.tags" @click="viewPostOnTag(t)" class="badge mx-1" :class="route.params.tag == t ? 'text-bg-primary' : 'text-bg-secondary'">#{{t}}</span>
-                </div>
-                <span><i class='bx bxs-like text-primary'></i> {{post.likes}} {{post.likes > 2 ? 'likes' : 'like'}}</span>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span v-for="t in post.tags" @click="viewPostOnTag(t)" class="cursor-pointer badge mx-1"
+                :class="route.params.tag == t ? 'text-bg-primary' : 'text-bg-secondary'">#{{ t }}</span>
             </div>
+            <span><i class='bx bxs-like text-primary'></i> {{ post.likes }} {{ post.likes > 2 ? 'likes' : 'like' }}</span>
+          </div>
         </div>
       </div>
     </div>
     <h2 class="mx-4 mb-1">
-        <a class="fs-6 text-comment" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class='bx bxs-message-rounded-dots'></i> Comments</a>
+      <a class="fs-6 text-comment" @click="showComments = true" href="javascript:void(0)">
+        <i class='bx bxs-message-rounded-dots'></i> Comments
+      </a>
     </h2>
-    <Comments />
+    <Comments v-if="showComments" :postId="post.id"/>
 
-  </div> 
+  </div>
 
 
   <!-- <div class="card" style="width: 30rem;">
@@ -83,13 +102,12 @@ const viewPostOnTag = (tag: string) => {
 </template>
 
 <style scoped>
-
-.cst-img{
+.cst-img {
   height: 3rem;
   width: auto;
 }
 
-.cst-img-comment{
+.cst-img-comment {
   height: 2rem;
   width: auto;
 }
@@ -98,4 +116,7 @@ const viewPostOnTag = (tag: string) => {
   text-decoration: none;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
 </style>

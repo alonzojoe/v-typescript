@@ -42,7 +42,12 @@ const store = createStore<RootState>({
         },
 
         setPostComments: (state: any, payload: any) => {
-            state.data.postComments = payload
+            state.data.postComments = payload.data.map((c) => {
+                return {
+                    ...c,
+                    publishDate: moment(c.publishDate).format('MMMM D YYYY, h:mm:ss a')
+                }
+            })
         },
 
         setPosts: (state: any, payload: any) => {
@@ -95,7 +100,7 @@ const store = createStore<RootState>({
         async fetchPostComments({commit}, id: string) {
             const response = await api.get(`post/${id}/comment?limit=100`)
             const data = response.data
-            commit('setPosts', data)
+            commit('setPostComments', data)
         },
 
         async fetchPostByTag({commit}, tag: string) {
