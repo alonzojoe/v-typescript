@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Person } from '../types/Types';
+import OffCanvas from '../components/OffCanvas.vue'
+
 
 const props = defineProps<{
   person: Person
@@ -28,6 +30,11 @@ const changeMe = () => {
 
 }
 
+const idToCheck = ref('')
+const checkProfile = (id) => {
+    idToCheck.value = id
+}
+
 
 </script>
 
@@ -38,12 +45,12 @@ const changeMe = () => {
         <img :src="person.picture" class="cursor-pointer rounded-circle cst-img border border-primary" alt="...">
         <div>
           <p class="mx-2 fs-6 text-secondary p-0 m-0">{{person.id}}</p>
-          <router-link :to="{name: 'profile', params: { id: person.id } }" class="mx-2 fs-6 text-decoration-none">{{ person.title }}. {{ person.firstName }} {{ person.lastName }}</router-link>
+          <a href="javascript:void(0);" @click="checkProfile(person.id)" class="mx-2 fs-6 text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">{{ person.title }}. {{ person.firstName }} {{ person.lastName }}</a>
         </div>
         
       </div>
       
-      
+      <OffCanvas v-show="person.id == idToCheck" :personId="person.id"/>
       <!-- <p class="card-text">{{ person }}</p> -->
       <div class="d-flex justify-content-end">
         <router-link :to="{name: 'person-posts', params: { id: person.id }}" class="btn btn-sm btn-primary">View Posts</router-link>
@@ -58,5 +65,6 @@ const changeMe = () => {
   height: 3rem;
   width: auto;
 }
+
 
 </style>

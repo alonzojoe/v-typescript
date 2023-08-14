@@ -31,7 +31,6 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <OffCanvas />
                 </form>
                 </div>
             </div>
@@ -40,5 +39,5 @@
 </template>
 
 <script lang="ts" setup>
-    import OffCanvas from './OffCanvas.vue';
+
 </script>

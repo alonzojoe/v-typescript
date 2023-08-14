@@ -17,13 +17,13 @@
                       </div>
                     </div>
                     <div class="col-12 p-0 m-0">
-                      <p class="mx-2 fst-custom text-secondary p-0 m-0">{{c.message}}</p>
+                      <p class="mx-2 fst-custom text-dark p-0 m-0">{{c.message}}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <div v-if="!postComments.length">
-                <p class="mx-2 fst-custom text-secondary p-0 m-0">No comment/s available</p>
+                <p class="mx-2 fst-custom text-dark p-0 m-0">No comments available</p>
               </div>
             </div>
           </div>

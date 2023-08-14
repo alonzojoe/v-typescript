@@ -40,7 +40,7 @@ export default {
   <div class="card" style="width: 30rem;">
     <div class="card-body">
       <div class="d-flex justify-content-start align-items-center mb-2">
-        <img :src="post.owner.picture" class="cursor-pointer rounded-circle cst-img border border-primary" alt="...">
+        <img :src="post.owner.picture" class="cursor-pointer rounded-circle cst-img" alt="...">
         <div>
           <router-link :to="{ name: 'profile', params: { id: post.owner.id } }" class="mx-2 fs-6 text-decoration-none">{{
             post.owner.title }}. {{ post.owner.firstName }} {{ post.owner.lastName }}</router-link>
@@ -105,6 +105,7 @@ export default {
 .cst-img {
   height: 3rem;
   width: auto;
+  border: 2px solid #0d6efd;
 }
 
 .cst-img-comment {

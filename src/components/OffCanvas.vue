@@ -1,51 +1,50 @@
 <template>
-    <div>
-      <!-- Toggle button for small screens -->
-      <button class="btn btn-primary d-lg-none" type="button" @click="toggleOffcanvas">
-        Toggle offcanvas
-      </button>
-  
-      <!-- Offcanvas element -->
-      <div
-        class="offcanvas-lg offcanvas-end"
-        :class="{ 'show': showOffcanvas }"
-        tabindex="-1"
-        id="offcanvasResponsive"
-        aria-labelledby="offcanvasResponsiveLabel"
-      >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Responsive offcanvas</h5>
-          <button
-            type="button"
-            class="btn-close"
-            @click="toggleOffcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="offcanvas-body">
-          <p class="mb-0">This is content within an <code>.offcanvas-lg</code>.</p>
-        </div>
-      </div>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Profile</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="offcanvas-body">
+
+
+      <h5 class="card-title">{{ profile.title }} {{ profile.firstName }} {{ profile.lastName }}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">{{ profile.email }}</h6>
+      <p class="card-text">BirthDate: {{ profile.dateOfBirth }}</p>
+    </div>
+    <pre>{{ profile }}</pre>
+  </div>  
   </template>
   
   <script>
-  import { ref } from 'vue';
-  
+  import { ref, onMounted, onBeforeMount, computed, watch } from 'vue';
+  import { useStore } from 'vuex'
+
   export default {
-    setup() {
+    props: [
+      'personId'
+    ],
+    setup(props) {
+      const profile = computed(() => store.getters.getPersonProfile)
+      const store = useStore()
 
-      const showOffcanvas = ref(false);
-  
+      onBeforeMount(() => {
+          store.commit('clearProfile')
+      }),
 
-      const toggleOffcanvas = () => {
-        showOffcanvas.value = !showOffcanvas.value;
-      };
-  
+      onMounted(()=> {
+          store.dispatch('viewProfile', props.personId)
+      })
+
+      watch(() => props.personId, (newPersonId) => {
+        if (newPersonId) {
+          store.dispatch('viewProfile', newPersonId);
+        }
+      });
+
       return {
-        showOffcanvas,
-        toggleOffcanvas,
-      };
+        profile
+      }
+ 
     },
   };
   </script>
