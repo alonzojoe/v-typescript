@@ -1,51 +1,78 @@
 <template>
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasRightLabel">Profile</h5>
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Profile <span class="text-secondary fs-6">#{{ profile.id
+      }}</span></h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
 
+      <div class="row p-0 m-0">
+        <div class="col-12">
+          <div class="d-flex justify-content-center align-items-center mb-3">
+            <img :src="profile.picture" class="cursor-pointer rounded-circle cst-img" alt="...">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="d-flex justify-content-center align-items-center mb-3">
+            <h5 class="card-title">{{ profile.title }} {{ profile.firstName }} {{ profile.lastName }}</h5>
+          </div>
+        </div>
+      </div>
 
-      <h5 class="card-title">{{ profile.title }} {{ profile.firstName }} {{ profile.lastName }}</h5>
-      <h6 class="card-subtitle mb-2 text-body-secondary">{{ profile.email }}</h6>
-      <p class="card-text">BirthDate: {{ profile.dateOfBirth }}</p>
+
+
+
+      <h6 class="card-subtitle mb-2 text-body-secondary">{{ profile.email }} / {{ profile.phone }}</h6>
+      <p class="card-text p-0 m-0">Gender: {{ profile.gender }}</p>
+      <p class="card-text p-0 m-0">Birthday: {{ profile.dateOfBirth }}</p>
+      <p class="card-text p-0 m-0">Address: {{ profile.location.street }} {{ profile.location.city }} {{ profile.location.state }}</p>
+      <p class="card-text p-0 m-0">Country: {{ profile.location.country }}</p>
+      <p class="card-text p-0 m-0">GMT Timezone: {{ profile.location.timezone }}</p>
     </div>
-    <pre>{{ profile }}</pre>
-  </div>  
-  </template>
+    <!-- <pre>{{ profile }}</pre> -->
+  </div>
+</template>
   
-  <script>
-  import { ref, onMounted, onBeforeMount, computed, watch } from 'vue';
-  import { useStore } from 'vuex'
+<script>
+import { ref, onMounted, onBeforeMount, computed, watch } from 'vue';
+import { useStore } from 'vuex'
 
-  export default {
-    props: [
-      'personId'
-    ],
-    setup(props) {
-      const profile = computed(() => store.getters.getPersonProfile)
-      const store = useStore()
+export default {
+  props: [
+    'personId'
+  ],
+  setup(props) {
+    const profile = computed(() => store.getters.getPersonProfile)
+    const store = useStore()
 
-      onBeforeMount(() => {
-          store.commit('clearProfile')
-      }),
+    onBeforeMount(() => {
+      store.commit('clearProfile')
+    }),
 
-      onMounted(()=> {
-          store.dispatch('viewProfile', props.personId)
+      onMounted(() => {
+        store.dispatch('viewProfile', props.personId)
       })
 
-      watch(() => props.personId, (newPersonId) => {
-        if (newPersonId) {
-          store.dispatch('viewProfile', newPersonId);
-        }
-      });
-
-      return {
-        profile
+    watch(() => props.personId, (newPersonId) => {
+      if (newPersonId) {
+        store.dispatch('viewProfile', newPersonId);
       }
- 
-    },
-  };
-  </script>
+    });
+
+    return {
+      profile
+    }
+
+  },
+};
+</script>
+
+<style scoped>
+.cst-img {
+  height: 7rem;
+  width: auto;
+  border: 2px solid #0d6efd;
+}
+</style>
   
