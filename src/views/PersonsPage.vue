@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Card from '../components/Card.vue'
-import { onMounted, reactive, computed } from 'vue';
+import OffCanvas from '../components/OffCanvas.vue'
+import { onMounted, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore()
@@ -10,12 +11,22 @@ const persons = computed(()=> store.getters.getPersons)
 onMounted(() => {
   store.dispatch('fetchPersons')
 })
+const profileId = ref('')
+
+const offCanvasShow = ref(false)
+const getIdFromChild = (data) => {
+  offCanvasShow.value = true
+  profileId.value = data
+  console.log(data)
+
+}
 </script>
 
 <template>
   <div class="row justify-content-center">
+    <OffCanvas v-if="offCanvasShow" :personId="profileId"/>
     <div v-for="p in persons" :key="p.id" class="col-sm-12 col-md-6 col-lg-3 mb-3">
-      <Card :person="p" />
+      <Card @transferId="getIdFromChild($event)" :person="p" />
     </div>
 
     <div class="col-sm-12 col-md-6 col-lg-3 mb-3">

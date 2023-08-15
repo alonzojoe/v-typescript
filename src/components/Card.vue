@@ -1,38 +1,27 @@
-<script setup lang="ts">
+<script lang="ts">
 import { ref } from 'vue'
 import { Person } from '../types/Types';
-import OffCanvas from '../components/OffCanvas.vue'
 
 
-const props = defineProps<{
-  person: Person
-}>()
+export default {
+  props: [
+      'person'
+  ],
+  emits: [
+    'transferId'
+  ],
+  setup(props, { emit }) {
+    
+    const idToCheck = ref('')
+    const checkProfile = (id: string) => {
+        emit('transferId', id)
+    }
 
-const emit = defineEmits()
-
-const modifiedObject = ref<Person>({
-    name: "",
-    age: 0,
-    address: ""
-})
-
-const changeMe = () => {
-   const name = prompt("Enter New Name: ")
-   const age = prompt("Enter New Age: ")
-   const address = prompt("Enter New Address: ")
-   if (name !== null && age !== null && address !== null) {
-      modifiedObject.value.name = name ?? ''
-      modifiedObject.value.age = parseInt(age) ?? ''
-      modifiedObject.value.address = address ?? ''
-      console.log(modifiedObject.value)
-      emit('change-name', modifiedObject.value)
-   }
-
-}
-
-const idToCheck = ref('')
-const checkProfile = (id) => {
-    idToCheck.value = id
+    return {
+      idToCheck,
+      checkProfile
+    }
+  }
 }
 
 
@@ -49,8 +38,7 @@ const checkProfile = (id) => {
         </div>
         
       </div>
-      
-      <OffCanvas v-show="person.id == idToCheck" :personId="person.id"/>
+    
       <!-- <p class="card-text">{{ person }}</p> -->
       <div class="d-flex justify-content-end">
         <router-link :to="{name: 'person-posts', params: { id: person.id }}" class="btn btn-sm btn-primary">View Posts</router-link>

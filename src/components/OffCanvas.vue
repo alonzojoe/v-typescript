@@ -18,19 +18,26 @@
             <h5 class="card-title">{{ profile.title }} {{ profile.firstName }} {{ profile.lastName }}</h5>
           </div>
         </div>
+        <div class="col-12">
+          <div class="d-flex justify-content-center align-items-center mb-3">
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ profile.email }} / {{ profile.phone }}</h6>
+          </div>
+        </div>
       </div>
 
-
-
-
-      <h6 class="card-subtitle mb-2 text-body-secondary">{{ profile.email }} / {{ profile.phone }}</h6>
-      <p class="card-text p-0 m-0">Gender: {{ profile.gender }}</p>
-      <p class="card-text p-0 m-0">Birthday: {{ profile.dateOfBirth }}</p>
-      <p class="card-text p-0 m-0">Address: {{ profile.location.street }} {{ profile.location.city }} {{ profile.location.state }}</p>
-      <p class="card-text p-0 m-0">Country: {{ profile.location.country }}</p>
-      <p class="card-text p-0 m-0">GMT Timezone: {{ profile.location.timezone }}</p>
+      <p class="card-text p-0 m-2">Gender: {{ profile.gender }}</p>
+      <p class="card-text p-0 m-2">Birthday: {{ profile.dateOfBirth }}</p>
+      <p class="card-text p-0 m-2">Address: {{ profile.location.street }} {{ profile.location.city }} {{
+        profile.location.state }}</p>
+      <p class="card-text p-0 m-2">Country: {{ profile.location.country }}</p>
+      <p class="card-text p-0 m-2">GMT Timezone: {{ profile.location.timezone }}</p>
     </div>
     <!-- <pre>{{ profile }}</pre> -->
+    <div class="d-flex justify-content-start align-items-center p-3" style="height: 30vh;">
+      <button class="btn btn-danger">
+        Close
+      </button>
+    </div>
   </div>
 </template>
   
@@ -54,11 +61,6 @@ export default {
         store.dispatch('viewProfile', props.personId)
       })
 
-    watch(() => props.personId, (newPersonId) => {
-      if (newPersonId) {
-        store.dispatch('viewProfile', newPersonId);
-      }
-    });
 
     return {
       profile
