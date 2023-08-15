@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Card from '../components/Card.vue'
 import OffCanvas from '../components/OffCanvas.vue'
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref, computed, watch } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore()
@@ -20,6 +20,8 @@ const getIdFromChild = (data) => {
   console.log(data)
 
 }
+
+
 </script>
 
 <template>

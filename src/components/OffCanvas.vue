@@ -1,11 +1,11 @@
 <template>
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
+    <!-- <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasRightLabel">Profile <span class="text-secondary fs-6">#{{ profile.id
       }}</span></h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
+    </div> -->
+    <!-- <div class="offcanvas-body">
 
       <div class="row p-0 m-0">
         <div class="col-12">
@@ -31,8 +31,8 @@
         profile.location.state }}</p>
       <p class="card-text p-0 m-2">Country: {{ profile.location.country }}</p>
       <p class="card-text p-0 m-2">GMT Timezone: {{ profile.location.timezone }}</p>
-    </div>
-    <!-- <pre>{{ profile }}</pre> -->
+    </div> -->
+
     <div class="d-flex justify-content-start align-items-center p-3" style="height: 30vh;">
       <button class="btn btn-danger">
         Close
@@ -60,6 +60,15 @@ export default {
       onMounted(() => {
         store.dispatch('viewProfile', props.personId)
       })
+
+    watch(() => {
+      profile.value
+      if (Object.keys(profile.value).length !== 0) {
+        console.log('doesnt have property')
+      } else {
+        console.log('has property')
+      }
+    })
 
 
     return {
