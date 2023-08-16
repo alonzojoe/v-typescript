@@ -9,12 +9,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <router-link :to="{name: 'persons'}" class="nav-link active" aria-current="page">Persons</router-link>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <router-link :to="{name: 'posts'}" class="nav-link">NewsFeed</router-link>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dropdown
                     </a>
@@ -27,11 +27,9 @@
                     </li>
                     <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
+                    </li> -->
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
+
                 </div>
             </div>
         </nav>
@@ -39,5 +37,8 @@
 </template>
 
 <script lang="ts" setup>
+import { watch, ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
 
 </script>
