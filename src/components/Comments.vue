@@ -6,7 +6,7 @@
           </h2> -->
           <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <div v-for="c in postComments" :key="c.id" class="d-flex justify-content-start align-items-center mb-2">
+              <div v-if="!isLoading" v-for="c in postComments" :key="c.id" class="d-flex justify-content-start align-items-center mb-2">
                 <img :src="c.owner.picture" class="cursor-pointer rounded-circle cst-img-comment border border-primary" alt="...">
                 <div class="d-flex align-items-center border rounded mx-2">
                   <div class="row p-0 m-0">
@@ -22,8 +22,13 @@
                   </div>
                 </div>
               </div>
-              <div v-if="!postComments.length">
+              <div v-if="!postComments.length && !isLoading">
                 <p class="mx-2 fst-custom text-dark p-0 m-0">No comments available</p>
+              </div>
+              <div v-if="isLoading == true" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border text-secondary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
               </div>
             </div>
           </div>
@@ -43,13 +48,17 @@ export default {
   setup(props) {
       const store = useStore()
       const postComments = ref([])
+      const isLoading = ref(false)
 
       onMounted(async () => {
+          isLoading.value = true
           await store.dispatch('fetchPostComments', props.postId)
           postComments.value = store.getters.getPostComments
+          isLoading.value = false
       })
 
       return {
+        isLoading,
         postComments
       }
   }
