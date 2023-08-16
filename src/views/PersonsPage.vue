@@ -7,9 +7,11 @@ import { useStore } from 'vuex';
 const store = useStore()
 
 const persons = computed(()=> store.getters.getPersons)
-
-onMounted(() => {
-  store.dispatch('fetchPersons')
+const isLoadingPost = ref(false)
+onMounted(async () => {
+  isLoadingPost.value = true
+  await store.dispatch('fetchPersons')
+  isLoadingPost.value = false
 })
 const profileId = ref('')
 
@@ -27,7 +29,14 @@ const getIdFromChild = (data) => {
 <template>
   <div class="row justify-content-center">
     <OffCanvas v-if="offCanvasShow" :personId="profileId"/>
-    <div v-for="p in persons" :key="p.id" class="col-sm-12 col-md-6 col-lg-3 mb-3">
+    <div class="col-12">
+      <div v-if="isLoadingPost" class="d-flex justify-content-center align-items-center">
+          <div class="spinner-border text-secondary" role="status">
+              <span class="visually-hidden">Loading...</span>
+          </div>
+      </div>
+    </div>
+    <div v-if="!isLoadingPost" v-for="p in persons" :key="p.id" class="col-sm-12 col-md-6 col-lg-4 mb-3">
       <Card @transferId="getIdFromChild($event)" :person="p" />
     </div>
 
