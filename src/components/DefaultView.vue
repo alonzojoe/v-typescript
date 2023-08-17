@@ -1,12 +1,9 @@
 <template>
     <div>
-
-
         <NavBar class="bx-shadow"/>
-        <div class="container mx-auto d-flex justify-content-center">
+        <div class="container-fluid">
             <router-view class="mt-4"/>
         </div>
-
     </div>
 </template>
 
