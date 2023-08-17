@@ -4,24 +4,24 @@
             <div class="col-10 mx-auto">
                 <div class="card position-relative mb-3">
                     <img src="../assets/cover.webp" class="card-img-top card-img" alt="...">
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card-body p-0">
+                        <div class="row align-items-center">
                             <div class="col-4 order-lg-1 order-2">
                                 <div class="d-flex align-items-center justify-content-around m-4">
                                     <div class="text-center">
-                                        <i class='bx bx-receipt fs-4'></i>
+                                        <i class='bx bx-receipt fs-4 text-secondary'></i>
                                         <h4 class="mb-0 fw-semibold lh-1">37</h4>
-                                        <p class="mb-0 fs-6">Posts</p>
+                                        <p class="mb-0 fs-6 text-secondary">Posts</p>
                                     </div>
                                     <div class="text-center">
-                                        <i class='bx bx-user-circle fs-4'></i>
+                                        <i class='bx bx-user-circle fs-4 text-secondary'></i>
                                         <h4 class="mb-0 fw-semibold lh-1">120</h4>
-                                        <p class="mb-0 fs-6">Followers</p>
+                                        <p class="mb-0 fs-6 text-secondary">Followers</p>
                                     </div>
                                     <div class="text-center">
-                                        <i class='bx bx-user-check fs-4'></i>
+                                        <i class='bx bx-user-check fs-4 text-secondary'></i>
                                         <h4 class="mb-0 fw-semibold lh-1">37</h4>
-                                        <p class="mb-0 fs-6">Following</p>
+                                        <p class="mb-0 fs-6 text-secondary">Following</p>
                                     </div>
                                 </div>
                             </div>
@@ -38,14 +38,12 @@
                                     </div>
                                     <div class="text-center">
                                         <h5 class="fs-5 mb-0 fw-semibold">{{ profile.firstName }} {{ profile.lastName }}</h5>
-                                        <p class="mb-0 fs-6">Project Manager</p>
+                                        <p class="mb-0 fs-6 text-secondary">Project Manager</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4 order-last">
                                 <div class="d-flex align-items-center justify-content-center">
-
-
                                     <ul
                                         class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
                                         <li class="position-relative">
@@ -77,16 +75,47 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <button class="btn btn-primary">Follow</button>
+                                            <button class="btn btn-primary">Follow <i class='bx bx-user-plus' ></i></button>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <!-- <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 mx-auto">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card shadow-none border">
+                            <div class="card-body">
+                                <h4 class="fw-semibold mb-3">About</h4>
+                                <p>Hello, I am {{profile.firstName}} {{profile.lastName}}
+                                    lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque aspernatur.
+                                </p>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="d-flex align-items-center gap-3 mb-4">
+                                        <i class='bx bx-envelope fs-5' ></i>
+                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.email }}</h6>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-3 mb-4">
+                                        <i class='bx bx-phone fs-5' ></i>
+                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.phone }}</h6>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-3 mb-4">
+                                        <i class='bx bx-female-sign fs-5' ></i>
+                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.gender }}</h6>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-3 mb-4">
+                                        <i class='bx bxs-map fs-5' ></i>
+                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.location.state }}, {{ profile.location.country }}</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+
                     </div>
                 </div>
             </div>
