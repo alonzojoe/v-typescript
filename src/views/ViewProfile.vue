@@ -37,7 +37,8 @@
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <h5 class="fs-5 mb-0 fw-semibold">{{ profile.firstName }} {{ profile.lastName }}</h5>
+                                        <h5 class="fs-5 mb-0 fw-semibold">{{ profile.firstName }} {{ profile.lastName }}
+                                        </h5>
                                         <p class="mb-0 fs-6 text-secondary">Project Manager</p>
                                     </div>
                                 </div>
@@ -75,7 +76,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <button class="btn btn-primary">Follow <i class='bx bx-user-plus' ></i></button>
+                                            <button class="btn btn-primary">Follow <i class='bx bx-user-plus'></i></button>
                                         </li>
                                     </ul>
                                 </div>
@@ -90,32 +91,76 @@
                         <div class="card shadow-none border">
                             <div class="card-body">
                                 <h4 class="fw-semibold mb-3">About</h4>
-                                <p>Hello, I am {{profile.firstName}} {{profile.lastName}}
+                                <p>Hello, I am {{ profile.firstName }} {{ profile.lastName }}
                                     lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque aspernatur.
                                 </p>
                                 <ul class="list-unstyled mb-0">
                                     <li class="d-flex align-items-center gap-3 mb-4">
-                                        <i class='bx bx-envelope fs-5' ></i>
+                                        <i class='bx bx-envelope fs-5'></i>
                                         <h6 class="fs-5 fw-semibold mb-0">{{ profile.email }}</h6>
                                     </li>
                                     <li class="d-flex align-items-center gap-3 mb-4">
-                                        <i class='bx bx-phone fs-5' ></i>
+                                        <i class='bx bx-phone fs-5'></i>
                                         <h6 class="fs-5 fw-semibold mb-0">{{ profile.phone }}</h6>
                                     </li>
                                     <li class="d-flex align-items-center gap-3 mb-4">
-                                        <i class='bx bx-female-sign fs-5' ></i>
+                                        <i class='bx bx-female-sign fs-5'></i>
                                         <h6 class="fs-5 fw-semibold mb-0">{{ profile.gender }}</h6>
                                     </li>
-                                    <li class="d-flex align-items-center gap-3 mb-4">
-                                        <i class='bx bxs-map fs-5' ></i>
-                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.location.state }}, {{ profile.location.country }}</h6>
-                                    </li>
+                                    <!-- <li class="d-flex align-items-center gap-3 mb-4">
+                                        <i class='bx bxs-map fs-5'></i>
+                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.location.state }}, {{
+                                            profile.location.country }}</h6>
+                                    </li> -->
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="card shadow-none border">
+                            <div class="card-body">
+                                <h4 class="fw-semibold mb-3">
+                                    Photos
+                                </h4>
+                                <div class="row m-1">
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                    </div>
+                                    <div class="col-4">
+                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-8">
-
+                        <div class="card">
+                            <div class="card-body border-bottom">
+                                <div class="d-flex align-items-center gap-3">
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,6 +194,9 @@ a {
     text-decoration: none;
 }
 
+.shadow-none {
+    box-shadow: none !important;
+}
 .list-unstyled {
     padding-left: 0;
     list-style: none;
