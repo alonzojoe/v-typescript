@@ -179,7 +179,10 @@
                                       <a class="text-white d-flex align-items-center justify-content-center cst-bg-info p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comment">
                                         <i class='bx bx-comment-dots'></i>
                                       </a>
-                                      <span class="text-dark fw-semibold">2</span>
+                                      <span class="text-dark fw-semibold">
+                                        <span v-if="!p.isLoading">{{ p.comments.length }}</span>
+                                        <span v-else>Loading ...</span>
+                                      </span>
                                     </div>
                                     <a class="text-dark ms-auto d-flex align-items-center justify-content-center bg-transparent p-2 fs-5 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Share">
                                         <i class='bx bxs-share'></i>
@@ -187,19 +190,24 @@
                                 </div>
                                 <!-- Comment Section -->
                                 <div class="position-relative">
-                                    <div class="p-4 rounded-2 bg-light mb-3">
+                                    <div v-if="p.isLoading" class="d-flex justify-content-center align-items-center">
+                                        <div class="spinner-border text-secondary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <div v-else-if="!p.isLoading && p.comments.length" v-for="(c, index) in p.comments" :key="index" class="p-4 rounded-2 bg-light mb-3">
                                         <div class="d-flex align-items-center gap-3">
-                                            <img :src="profile.picture" alt="" class="rounded-circle" width="33" height="33">
-                                            <h6 class="fw-semibold mb-0 fs-6">Deran Mac</h6>
+                                            <img :src="c.owner.picture" alt="" class="rounded-circle" width="33" height="33">
+                                            <h6 class="fw-semibold mb-0 fs-6">{{ c.owner.firstName }} {{ c.owner.lastName }}</h6>
                                             <span class="fs-custom-sm">
-                                                <i class='bx bxs-circle text-secondary' ></i> 8 min ago
+                                                <i class='bx bxs-circle text-secondary' ></i> {{ c.publishDate }}
                                             </span>
                                         </div>
-                                        <p class="my-3">Lufo zizrap iwofapsuk pusar luc jodawbac zi op uvezojroj duwage vuhzoc ja vawdud le furhez siva 
-                                            fikavu ineloh. Zot afokoge si mucuve hoikpaf adzuk zileuda falohfek zoije fuka udune lub annajor gazo 
-                                            conis sufur gu.
+                                        <p class="my-3">
+                                            {{ c.message }}
                                         </p>
                                     </div>
+                                    
                                 </div>
                                 <!-- End Comment Section -->
                             </div>
@@ -228,9 +236,10 @@ onBeforeMount(() => {
     store.commit('clearProfile')
 }),
 
-    onMounted(() => {
-        store.dispatch('viewProfile', route.params.id)
-        store.dispatch('fetchPersonPosts', route.params.id)
+    onMounted(async () => {
+        await store.dispatch('viewProfile', route.params.id)
+        await store.dispatch('fetchPersonPosts', route.params.id)
+        await store.dispatch('injectPostComments')
     })
 </script>
 

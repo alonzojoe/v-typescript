@@ -38,7 +38,9 @@ const store = createStore<RootState>({
             state.data.personPosts = payload.data.map((p) => {
                 return {
                     ...p,
-                    publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a')
+                    publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a'),
+                    comments: [],
+                    isLoading: true
                 }
             })
         },
@@ -76,6 +78,22 @@ const store = createStore<RootState>({
 
         setPostsByTagEmpty: (state: any) => {
             state.data.postsByTags = []
+        },
+
+        addCommentsToPost: (state: any, payload) => {
+            console.log('payload', payload)
+            const { id, comments } = payload
+            const index = state.data.personPosts.findIndex((p) => p.id == id)
+
+            if (index !== -1) {
+                state.data.personPosts[index].comments = comments.map((p) => {
+                    return {
+                        ...p,
+                        publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a'),
+                    }
+                })
+                state.data.personPosts[index].isLoading = false
+            }
         }
     },
     actions: {
@@ -113,6 +131,21 @@ const store = createStore<RootState>({
             const response = await api.get(`tag/${tag}/post?limit=100`)
             const data = response.data
             commit('setPostsBytags', data)
+        },
+
+        async injectPostComments({state, commit} ) {
+            for (const post of state.data.personPosts) {
+                const postId = post.id
+                const response = await api.get(`post/${postId}/comment?limit=1000`)
+                const data = response.data
+
+                if (data.data.length > 0) {
+                    commit('addCommentsToPost', { id: postId, comments: data.data })
+                }else{
+                    commit('addCommentsToPost', { id: postId, comments: [] })
+                }
+
+            }
         }
     },
     getters: {
