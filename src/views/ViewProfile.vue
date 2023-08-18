@@ -121,34 +121,11 @@
                                     Photos
                                 </h4>
                                 <div class="row m-1">
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
+                                    <div class="col-4" v-for="(p, index) in posts" :key="index">
+                                        <img :src="p.image" class="img-fluid w-100 rounded object-fit-cover mb-4" style="height: 60px;">
                                     </div>
                                     
+                        
                                 </div>
                             </div>
                         </div>
@@ -216,8 +193,8 @@
                 </div>
             </div>
         </div>
-        <pre>{{ profile }}</pre>
-        <pre>{{ posts }}</pre>
+        <!-- <pre>{{ profile }}</pre>
+        <pre>{{ posts }}</pre> -->
     </div>
 </template>
 
