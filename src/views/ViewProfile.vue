@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-10 mx-auto">
                 <div class="card position-relative mb-3">
@@ -185,7 +185,23 @@
                                         <i class='bx bxs-share'></i>
                                     </a>
                                 </div>
-              
+                                <!-- Comment Section -->
+                                <div class="position-relative">
+                                    <div class="p-4 rounded-2 bg-light mb-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img :src="profile.picture" alt="" class="rounded-circle" width="33" height="33">
+                                            <h6 class="fw-semibold mb-0 fs-6">Deran Mac</h6>
+                                            <span class="fs-custom-sm">
+                                                <i class='bx bxs-circle text-secondary' ></i> 8 min ago
+                                            </span>
+                                        </div>
+                                        <p class="my-3">Lufo zizrap iwofapsuk pusar luc jodawbac zi op uvezojroj duwage vuhzoc ja vawdud le furhez siva 
+                                            fikavu ineloh. Zot afokoge si mucuve hoikpaf adzuk zileuda falohfek zoije fuka udune lub annajor gazo 
+                                            conis sufur gu.
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- End Comment Section -->
                             </div>
                         </div>
                     </div>
@@ -249,7 +265,7 @@ a {
 }
 
 .linear-gradient {
-    background-image: linear-gradient(#50b2fc, #f44c66);
+    background-image: linear-gradient(#4F9D87, #EAA326);
 }
 
 .mt-n3 {
