@@ -134,19 +134,19 @@
                                         <img :src="profile.picture" class="rounded img-fluid mb-4">
                                     </div>
                                     <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
                                     </div>
                                     <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
                                     </div>
                                     <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
                                     </div>
                                     <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
                                     </div>
                                     <div class="col-4">
-                                        <img :src="profile.picture" class="rounded img-fluid-mb-9">
+                                        <img :src="profile.picture" class="rounded img-fluid mb-4">
                                     </div>
                                     
                                 </div>
@@ -154,11 +154,38 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="card">
+                        <div class="card mb-3" v-for="(p, index) in posts" :key="p.id">
                             <div class="card-body border-bottom">
                                 <div class="d-flex align-items-center gap-3">
-                                    
+                                    <img :src="p.owner.picture" alt="" class="rounded-circle" width="40" height="40">
+                                    <h6 class="fw-semibold mb-0 fs-6">{{ p.owner.firstName }} {{ p.owner.lastName }}</h6>
+                                    <span class="fs-custom-sm">
+                                        <span class="p-1 bg-light rounded-circle d-inline-block text-secondary"></span>
+                                         {{ p.publishDate }}
+                                    </span>
                                 </div>
+                                <p class="text-dark my-3">
+                                    {{ p.text }}
+                                </p>
+                                <img :src="p.image" alt="" class="img-fluid rounded-4 w-100 object-fit-cover" style="height: 360px;">
+                                <div class="d-flex align-items-center my-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                      <a class="text-white d-flex align-items-center justify-content-center cst-bg-primary p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Like">
+                                        <i class='bx bx-like'></i>
+                                      </a>
+                                      <span class="text-dark fw-semibold">67</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 ms-4">
+                                      <a class="text-white d-flex align-items-center justify-content-center cst-bg-info p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comment">
+                                        <i class='bx bx-comment-dots'></i>
+                                      </a>
+                                      <span class="text-dark fw-semibold">2</span>
+                                    </div>
+                                    <a class="text-dark ms-auto d-flex align-items-center justify-content-center bg-transparent p-2 fs-5 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Share">
+                                        <i class='bx bxs-share'></i>
+                                    </a>
+                                </div>
+              
                             </div>
                         </div>
                     </div>
@@ -166,6 +193,7 @@
             </div>
         </div>
         <pre>{{ profile }}</pre>
+        <pre>{{ posts }}</pre>
     </div>
 </template>
 
@@ -179,19 +207,37 @@ const store = useStore()
 const route = useRoute()
 console.log(route.params.id)
 const profile = computed(() => store.getters.getPersonProfile)
-
+const posts = computed(() => store.getters.getPersonPosts)
 onBeforeMount(() => {
     store.commit('clearProfile')
 }),
 
     onMounted(() => {
         store.dispatch('viewProfile', route.params.id)
+        store.dispatch('fetchPersonPosts', route.params.id)
     })
 </script>
 
 <style scoped>
 a {
     text-decoration: none;
+}
+
+.cst-bg-primary {
+    background-color: #5972FB;
+}
+
+.cst-bg-info {
+    background-color: #49B2FC;
+}
+
+.fs-2 {
+    font-size: .75rem !important;
+}
+
+.fs-custom-sm {
+    font-size: 12px !important;
+    margin-bottom: 10px;
 }
 
 .shadow-none {
