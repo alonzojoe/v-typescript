@@ -6,26 +6,26 @@
                     <img src="../assets/cover.webp" class="card-img-top card-img" alt="...">
                     <div class="card-body p-0">
                         <div class="row align-items-center">
-                            <div class="col-4 order-lg-1 order-2">
+                            <div class="col-sm-12 col-lg-4 order-lg-1 order-2">
                                 <div class="d-flex align-items-center justify-content-around m-4">
                                     <div class="text-center">
                                         <i class='bx bx-receipt fs-4 text-secondary'></i>
-                                        <h4 class="mb-0 fw-semibold lh-1">37</h4>
+                                        <h4 class="mb-0 fw-semibold lh-1 fs-5">37</h4>
                                         <p class="mb-0 fs-6 text-secondary">Posts</p>
                                     </div>
                                     <div class="text-center">
                                         <i class='bx bx-user-circle fs-4 text-secondary'></i>
-                                        <h4 class="mb-0 fw-semibold lh-1">120</h4>
+                                        <h4 class="mb-0 fw-semibold lh-1 fs-5">120</h4>
                                         <p class="mb-0 fs-6 text-secondary">Followers</p>
                                     </div>
                                     <div class="text-center">
                                         <i class='bx bx-user-check fs-4 text-secondary'></i>
-                                        <h4 class="mb-0 fw-semibold lh-1">37</h4>
+                                        <h4 class="mb-0 fw-semibold lh-1 fs-5">37</h4>
                                         <p class="mb-0 fs-6 text-secondary">Following</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 mt-n3 order-lg-2 order-1">
+                            <div class="col-sm-12 col-lg-4 mt-n3 order-lg-2 order-1">
                                 <div class="mt-n5">
                                     <div class="d-flex align-items-center justify-content-center mb-2">
                                         <div class="linear-gradient d-flex align-items-center justify-content-center rounded-circle"
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 order-last">
+                            <div class="col-sm-12 col-lg-4 order-last">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <ul
                                         class="list-unstyled d-flex align-items-center justify-content-center justify-content-lg-start my-3 gap-3">
@@ -76,7 +76,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <button class="btn btn-primary">Follow <i class='bx bx-user-plus'></i></button>
+                                            <button class="btn btn-primary text-white">Follow <i class='bx bx-user-plus'></i></button>
                                         </li>
                                     </ul>
                                 </div>
@@ -91,22 +91,27 @@
                         <div class="card shadow-none border">
                             <div class="card-body">
                                 <h4 class="fw-semibold mb-3">About</h4>
-                                <p>Hello, I am {{ profile.firstName }} {{ profile.lastName }}
+                                <p class="fs-6 text-dark">Hello, I am {{ profile.firstName }} {{ profile.lastName }}
                                     lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque aspernatur.
                                 </p>
                                 <ul class="list-unstyled mb-0">
                                     <li class="d-flex align-items-center gap-3 mb-4">
+                                        <i class='bx bx-female-sign fs-5'></i>
+                                        <h6 class="fs-6 text-secondary fw-semibold mb-0">{{ profile.gender }}</h6>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-3 mb-4">
+                                        <i class='bx bx-calendar-event fs-5'></i>
+                                        <h6 class="fs-6 text-secondary fw-semibold mb-0">{{ profile.dateOfBirth }}</h6>
+                                    </li>
+                                    <li class="d-flex align-items-center gap-3 mb-4">
                                         <i class='bx bx-envelope fs-5'></i>
-                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.email }}</h6>
+                                        <h6 class="fs-6 text-secondary fw-semibold mb-0">{{ profile.email }}</h6>
                                     </li>
                                     <li class="d-flex align-items-center gap-3 mb-4">
                                         <i class='bx bx-phone fs-5'></i>
-                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.phone }}</h6>
+                                        <h6 class="fs-6 text-secondary fw-semibold mb-0">{{ profile.phone }}</h6>
                                     </li>
-                                    <li class="d-flex align-items-center gap-3 mb-4">
-                                        <i class='bx bx-female-sign fs-5'></i>
-                                        <h6 class="fs-5 fw-semibold mb-0">{{ profile.gender }}</h6>
-                                    </li>
+         
                                     <!-- <li class="d-flex align-items-center gap-3 mb-4">
                                         <i class='bx bxs-map fs-5'></i>
                                         <h6 class="fs-5 fw-semibold mb-0">{{ profile.location.state }}, {{
@@ -150,7 +155,7 @@
                                       <a class="text-white d-flex align-items-center justify-content-center cst-bg-primary p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Like">
                                         <i class='bx bx-like'></i>
                                       </a>
-                                      <span class="text-dark fw-semibold">67</span>
+                                      <span class="text-dark fw-semibold">{{ p.likes }}</span>
                                     </div>
                                     <div class="d-flex align-items-center gap-2 ms-4">
                                       <a class="text-white d-flex align-items-center justify-content-center cst-bg-info p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comment">
@@ -184,6 +189,28 @@
                                         <p class="my-3">
                                             {{ c.message }}
                                         </p>
+                                        <div class="d-flex align-items-center my-3">
+                                            <div class="d-flex align-items-center gap-2">
+                                              <a class="text-white d-flex align-items-center justify-content-center cst-bg-primary p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Like">
+                                                <i class='bx bx-like'></i>
+                                              </a>
+                                              <span class="text-dark fw-semibold">13</span>
+                                            </div>
+                                            <div class="d-flex align-items-center gap-2 ms-4">
+                                              <a class="text-white d-flex align-items-center justify-content-center cst-bg-info p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comment">
+                                                <i class='bx bxs-share'></i>
+                                              </a>
+                                              <span class="text-dark fw-semibold">
+                                            
+                                                <span>0</span>
+                                              </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3 p-3">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzIugh4t8tGK9w3a52Q88li6yccJVy5o7USg&usqp=CAU" alt="" class="rounded-circle" width="33" height="33">
+                                        <input type="text" class="form-control py-8" placeholder="write a comment...">
+                                        <button class="btn btn-primary">Comment</button>
                                     </div>
                                     
                                 </div>

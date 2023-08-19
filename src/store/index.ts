@@ -21,13 +21,11 @@ const store = createStore<RootState>({
         },
 
         setPersonprofile: (state: any, payload: object) => {
-            state.data.personProfile = payload.data
-            // .map((p) => {
-            //     return {
-            //         ...p,
-            //         dateOfBirth: moment(p.dateOfBirth).format('lll')
-            //     }
-            // })[0]
+            state.data.personProfile = {
+                ...payload.data,
+                dateOfBirth: moment(payload.data).format('ll')
+            }
+         
         },
 
         clearProfile: (state: any) => {
