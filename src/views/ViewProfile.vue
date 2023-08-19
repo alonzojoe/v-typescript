@@ -142,7 +142,7 @@
                                     </span>
                                 </div>
                                 <p class="text-dark my-3">
-                                    {{ p.text }}
+                                    {{ p.text }} <span v-for="t in p.tags" class="badge cst-bg-primary mx-1">#{{ t }}</span>
                                 </p>
                                 <img :src="p.image" alt="" class="img-fluid rounded-4 w-100 object-fit-cover" style="height: 360px;">
                                 <div class="d-flex align-items-center my-3">
@@ -157,8 +157,9 @@
                                         <i class='bx bx-comment-dots'></i>
                                       </a>
                                       <span class="text-dark fw-semibold">
-                                        <span v-if="!p.isLoading">{{ p.comments.length }}</span>
-                                        <span v-else>Loading ...</span>
+                                        <span v-if="isLoading">Loading...</span>
+                                        <span v-else-if="!isLoading && p.comments && p.comments.length">{{ p.comments.length }}</span>
+                                        <span v-else>0</span>
                                       </span>
                                     </div>
                                     <a class="text-dark ms-auto d-flex align-items-center justify-content-center bg-transparent p-2 fs-5 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Share">
@@ -172,7 +173,7 @@
                                             <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </div>
-                                    <div v-else-if="!p.isLoading && p.comments.length" v-for="(c, index) in p.comments" :key="index" class="p-4 rounded-2 bg-light mb-3">
+                                    <div v-else-if="!p.isLoading && p.comments && p.comments.length" v-for="(c, index) in p.comments" :key="index" class="p-4 rounded-2 bg-light mb-3">
                                         <div class="d-flex align-items-center gap-3">
                                             <img :src="c.owner.picture" alt="" class="rounded-circle" width="33" height="33">
                                             <h6 class="fw-semibold mb-0 fs-6">{{ c.owner.firstName }} {{ c.owner.lastName }}</h6>
