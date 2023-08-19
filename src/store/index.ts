@@ -23,7 +23,7 @@ const store = createStore<RootState>({
         setPersonprofile: (state: any, payload: object) => {
             state.data.personProfile = {
                 ...payload.data,
-                dateOfBirth: moment(payload.data).format('ll')
+                dateOfBirth: moment(payload.data.dateOfBirth).format('ll')
             }
          
         },
