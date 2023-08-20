@@ -303,4 +303,5 @@ a {
 .card-img {
     height: 160px;
     width: auto;
-}</style>
+}
+</style>
