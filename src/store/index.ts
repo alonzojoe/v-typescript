@@ -90,6 +90,7 @@ const store = createStore<RootState>({
                         publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a'),
                     }
                 })
+                
                 state.data.personPosts[index].isLoading = false
             }
         }

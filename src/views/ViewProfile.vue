@@ -176,13 +176,14 @@
                                     </a>
                                 </div>
                                 <!-- Comment Section -->
+                                <!-- {{ p  }}, {{ !p.isLoading && p.comments && p.comments.length > 0 }} -->
                                 <div class="position-relative">
                                     <div v-if="p.isLoading" class="d-flex justify-content-center align-items-center">
                                         <div class="spinner-border text-secondary" role="status">
                                             <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </div>
-                                    <div v-else-if="!p.isLoading && p.comments && p.comments.length" v-for="(c, index) in p.comments" :key="index" class="p-4 rounded-2 bg-light mb-3">
+                                    <div v-else-if="!p.isLoading && p.comments && p.comments.length > 0" v-for="(c, index) in p.comments" :key="index" class="p-4 rounded-2 bg-light mb-3">
                                         <div class="d-flex align-items-center gap-3">
                                             <img :src="c.owner.picture" alt="" class="rounded-circle" width="33" height="33">
                                             <h6 class="fw-semibold mb-0 fs-6">{{ c.owner.firstName }} {{ c.owner.lastName }}</h6>
@@ -198,7 +199,7 @@
                                               <a class="text-white d-flex align-items-center justify-content-center cst-bg-primary p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Like">
                                                 <i class='bx bx-like'></i>
                                               </a>
-                                              <span class="text-dark fw-semibold">13</span>
+                                              <span class="text-dark fw-semibold">5</span>
                                             </div>
                                             <div class="d-flex align-items-center gap-2 ms-4">
                                               <a class="text-white d-flex align-items-center justify-content-center cst-bg-info p-2 fs-6 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Comment">
@@ -211,6 +212,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div v-else></div>
                                     <div class="d-flex align-items-center gap-3 p-3">
                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzIugh4t8tGK9w3a52Q88li6yccJVy5o7USg&usqp=CAU" alt="" class="rounded-circle" width="33" height="33">
                                         <input type="text" class="form-control py-8" placeholder="write a comment...">
@@ -250,6 +252,10 @@ onBeforeMount(() => {
         await store.dispatch('fetchPersonPosts', route.params.id)
         await store.dispatch('injectPostComments')
     })
+
+    const getRandomNumber = () => {
+        return Math.floor(Math.random() * 50) + 1;
+    }
 </script>
 
 <style scoped>
