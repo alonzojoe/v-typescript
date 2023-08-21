@@ -15,11 +15,6 @@ export default {
     const idToCheck = ref('')
     const checkProfile = (id: string) => {
         emit('transferId', id)
-        emit('transferFunction', () => {
-          console.log(`Function triggered for person ${props.person.name}`);
-          // You can perform any actions here based on the person's ID
-        });
-
     }
 
     return {

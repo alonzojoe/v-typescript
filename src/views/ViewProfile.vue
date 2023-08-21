@@ -96,12 +96,12 @@
                                 </p>
                                 <ul class="list-unstyled mb-0">
                                     <li class="d-flex align-items-center gap-3 mb-4">
-                                        <i class='bx bx-female-sign fs-5' :class="profile.gender == 'male' ? 'bx-male-sign' : 'bx-male-sign'"></i>
+                                        <i class='bx fs-5' :class="profile.gender == 'male' ? 'bx-male-sign' : 'bx-female-sign'"></i>
                                         <h6 class="fs-6 text-secondary fw-semibold mb-0">{{ profile.gender }}</h6>
                                     </li>
                                     <li class="d-flex align-items-center gap-3 mb-4">
                                         <i class='bx bxs-calendar-event fs-5'></i>
-                                        <h6 class="fs-6 text-secondary fw-semibold mbgit a-0">{{ profile.dateOfBirth }}</h6>
+                                        <h6 class="fs-6 text-secondary fw-semibold mb-0">{{ profile.dateOfBirth }}</h6>
                                     </li>
                                     <li class="d-flex align-items-center gap-3 mb-4">
                                         <i class='bx bxs-envelope fs-5'></i>

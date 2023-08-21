@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Card from '../components/Card.vue'
-import OffCanvas from '../components/OffCanvas.vue'
+// import OffCanvas from '../components/OffCanvas.vue'
+import ViewPerson from '../components/ViewPerson.vue'
 import { onMounted, ref, computed, watch } from 'vue';
 import { useStore } from 'vuex';
 
@@ -23,15 +24,9 @@ const getIdFromChild = (data, callback) => {
   profileId.value = data
   console.log(data)
 
-  functionCallback = callback
-
 }
 
-const executeStoredFunction = () => {
-  if (typeof functionCallback === 'function') {
-    functionCallback();
-  }
-};
+
 
 
 
@@ -39,7 +34,7 @@ const executeStoredFunction = () => {
 
 <template>
   <div class="row justify-content-center">
-    <OffCanvas v-if="offCanvasShow" :personId="profileId" />
+    <ViewPerson v-show="offCanvasShow && profileId" :personId="profileId" />
     <div class="col-12">
       <div v-if="isLoadingPost" class="d-flex justify-content-center align-items-center">
         <div class="spinner-border text-secondary" role="status">
@@ -48,7 +43,7 @@ const executeStoredFunction = () => {
       </div>
     </div>
     <div v-if="!isLoadingPost" v-for="p in persons" :key="p.id" class="col-sm-12 col-md-6 col-lg-4 mb-3">
-      <Card @transferId="getIdFromChild($event)" transferFunction="" :person="p" />
+      <Card @transferId="getIdFromChild($event)" :person="p" />
     </div>
 
     <div class="col-sm-12 col-md-6 col-lg-3 mb-3">

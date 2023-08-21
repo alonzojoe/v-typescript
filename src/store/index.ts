@@ -97,7 +97,7 @@ const store = createStore<RootState>({
     },
     actions: {
         async fetchPersons({ commit }) {
-            const response = await api.get<Person[]>('user?limit=20')
+            const response = await api.get<Person[]>('user?limit=100')
             const data = response.data
             commit('setPersons', data)
         },
@@ -109,7 +109,7 @@ const store = createStore<RootState>({
         },
 
         async fetchPersonPosts({commit}, id: string) {
-            const response = await api.get(`user/${id}/post?limit=10`)
+            const response = await api.get(`user/${id}/post?limit=100`)
             const data = response.data
             commit('setPersonPosts', data)
         },
