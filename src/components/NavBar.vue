@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom-shadow fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">V-Typescript</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,3 +42,9 @@ import { useRoute } from 'vue-router';
 
 
 </script>
+
+<style scoped>
+.border-bottom-shadow {
+    border-bottom: .1rem solid rgba(0, 0, 0, 0.2) !important;
+}
+</style>
