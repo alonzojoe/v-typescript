@@ -36,7 +36,7 @@
             </div>
             <!-- Comment Section -->
             <!-- {{ p  }}, {{ !post.isLoading && post.comments && post.comments.length > 0 }} -->
-            <!-- <div class="position-relative">
+            <div class="position-relative">
                 <div v-if="post.isLoading" class="d-flex justify-content-center align-items-center">
                     <div class="spinner-border text-secondary" role="status">
                         <span class="visually-hidden">Loading...</span>
@@ -78,7 +78,7 @@
                     <button class="btn btn-primary">Comment</button>
                 </div>
                 
-            </div> -->
+            </div>
             <!-- End Comment Section -->
         </div>
     </div>

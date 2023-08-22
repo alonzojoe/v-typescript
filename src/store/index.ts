@@ -57,10 +57,12 @@ const store = createStore<RootState>({
         },
 
         setPosts: (state: any, payload: any) => {
-            state.data.personPosts = payload.data.map((p) => {
+            state.data.posts = payload.data.map((p) => {
                 return {
                     ...p,
-                    publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a')
+                    publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a'),
+                    comments: [],
+                    isLoading: true
                 }
             })
         },
@@ -93,6 +95,24 @@ const store = createStore<RootState>({
                 
                 state.data.personPosts[index].isLoading = false
             }
+        },
+
+
+        addCommentsToPostFeed: (state: any, payload) => {
+            console.log('payload', payload)
+            const { id, comments } = payload
+            const index = state.data.posts.findIndex((p) => p.id == id)
+
+            if (index !== -1) {
+                state.data.posts[index].comments = comments.map((p) => {
+                    return {
+                        ...p,
+                        publishDate: moment(p.publishDate).format('MMMM D YYYY, h:mm:ss a'),
+                    }
+                })
+                
+                state.data.posts[index].isLoading = false
+            }
         }
     },
     actions: {
@@ -118,6 +138,7 @@ const store = createStore<RootState>({
             const response = await api.get(`post?limit=100`)
             const data = response.data
             commit('setPosts', data)
+            
         },
 
         async fetchPostComments({commit}, id: string) {
@@ -132,16 +153,35 @@ const store = createStore<RootState>({
             commit('setPostsBytags', data)
         },
 
-        async injectPostComments({state, commit} ) {
+        async injectPostComments({state, commit}) {
+              
             for (const post of state.data.personPosts) {
                 const postId = post.id
                 const response = await api.get(`post/${postId}/comment?limit=1000`)
                 const data = response.data
 
                 if (data.data.length > 0) {
+                    
                     commit('addCommentsToPost', { id: postId, comments: data.data })
                 }else{
                     commit('addCommentsToPost', { id: postId, comments: [] })
+                }
+
+            }
+        },
+
+        async injectPostCommentsFeed({state, commit}) {
+        
+            for (const post of state.data.posts) {
+                const postId = post.id
+                const response = await api.get(`post/${postId}/comment?limit=1000`)
+                const data = response.data
+
+                if (data.data.length > 0) {
+                    
+                    commit('addCommentsToPostFeed', { id: postId, comments: data.data })
+                }else{
+                    commit('addCommentsToPostFeed', { id: postId, comments: [] })
                 }
 
             }

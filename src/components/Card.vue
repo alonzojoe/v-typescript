@@ -28,24 +28,7 @@ export default {
 </script>
 
 <template>
-  <!-- <div class="card" style="width: 20rem;">
-    <div class="card-body">
-      <div class="d-flex justify-content-start align-items-center mb-2">
-        <img :src="person.picture" class="cursor-pointer rounded-circle cst-img border border-primary" alt="...">
-        <div>
-          <p class="mx-2 fs-6 text-secondary p-0 m-0">{{person.id}}</p>
-          <a href="javascript:void(0);" @click="checkProfile(person.id)" class="mx-2 fs-6 text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">{{ person.title }}. {{ person.firstName }} {{ person.lastName }}</a>
-        </div>
-        
-      </div>
-    
-
-      <div class="d-flex justify-content-end">
-        <router-link :to="{name: 'person-posts', params: { id: person.id }}" class="btn btn-sm btn-primary">View Posts</router-link>
-      </div>
-    </div>
-  </div>  -->
-  <div class="card">
+  <div class="card border-cst-primary">
     <div class="card-body p-4 text-center border-bottom position-relative">
       <router-link :to="{name: 'person-posts', params: { id: person.id }}" class="view-posts btn btn-primary">View Posts</router-link>
       <img :src="person.picture" alt="" class="rounded-circle mb-3" width="80" height="80">
@@ -98,6 +81,11 @@ a {
 
 .cst-bg-info {
   background-color: #49B2FC;
+}
+
+.border-cst-primary {
+  
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.2) !important;
 }
 .cst-img{
   height: 3rem;

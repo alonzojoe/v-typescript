@@ -22,12 +22,14 @@ import PostCard from '../components/PostCard.vue';
 const store = useStore()
 
 const isLoadingPost = ref(false)
-const posts = computed(() => store.getters.getPersonPosts)
+const posts = computed(() => store.getters.getPosts)
 
 onMounted(async () => {
     isLoadingPost.value = true
     await store.dispatch('fetchPosts')
+
     isLoadingPost.value = false
+    store.dispatch('injectPostCommentsFeed')
 })
 
 </script>
